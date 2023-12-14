@@ -1,0 +1,113 @@
+
+---
+title: "Medical Insurance Cost Prediction"
+author: Mohamed Tounkara
+date: September 11, 2023
+output:
+  html_notebook:
+    toc: yes
+    toc_depth: 4
+    number_sections: yes
+  pdf_document:
+    toc: yes
+    toc_depth: '4'
+    number_sections: yes
+---
+
+
+```{r}
+getwd()
+knitr::include_graphics("/Users/mohamedtounkara/Desktop/UHD FILES/STAT 6382/Project 1/Insurancelogos.jpg")
+```
+
+# Introduction
+ Medical insurance costs are a complex web of variables that impact individuals and families in diverse ways. These costs are influenced by an array of factors, including sex, smoking status, age, BMI (Body Mass Index), and more. As I embark on this exploration, I will delve into the intricate relationship between these variables and the expenses associated with healthcare coverage.
+It is undeniable that medical insurance is a vital safety net, providing financial protection against unforeseen health-related expenditures. However, understanding why some individuals pay significantly more for coverage than others requires a comprehensive analysis of these contributing elements. I personally was not insured in the past and know how it feels when you are feeling sick or bad but cannot go to hospital because of how expensive that chceck up might be. In this examination of medical insurance costs, I aim to unravel the intricate interplay between these factors, shedding light on the disparities and challenges faced by various individuals. 
+By understanding how sex, smoking status, age, BMI, and other variables influence the cost of medical insurance, we can work towards a more equitable and accessible healthcare system, ensuring that quality healthcare is within reach for all, regardless of their unique circumstances.
+
+# Overview 
+Based on the healthcare.gov website, there are 3 different steps when trying to enroll to a medical insurance plan.
+The 3 steps are the following: 
+
+------------------------------------------------------------
+
+*  Step 1: Go to the marketplace Create and account 
+
+    * 1a: Create an account
+    
+    * 1b: Enter your Zipcode
+
+*  Step 2: Tell us about you & your household
+
+    * 2a: Your current plan
+    
+    * 2b: Household size
+
+    * 2c: Your household income
+  
+*  Step 3: Select your plan
+  
+    * 3a: Terminologies
+  
+    * 3b: Plan categories
+    
+For Step 1, To commence the enrollment process, you must first create a secure and personalized account on healthcare.gov. Creating an account is fundamental, serving as a digital identifier and a means to facilitate the entire application process. The account creation process involves providing basic personal information such as name, date of birth, and contact details.After creating your account, you will be prompted to input your zip code. This seemingly simple step holds immense significance, as healthcare offerings and insurance plan availability often vary based on geographical location. By entering the zip code, the system tailors the available insurance plans, presenting options that are applicable and accessible to the user's specific area. 
+In Step2, for individuals who are already insured, this part of the enrollment process prompts them to share details about their existing healthcare plan. By outlining the specifics of your current plan, such as the coverage extent and any limitations, you set the stage for informed decision-making during the subsequent steps of the enrollment process.You will then provide information regarding the size of their household. The number of individuals in a household is a critical factor in determining the scope and scale of coverage needed. Finally you will be ask to provide provide accurate information about your household income, including various sources such as wages, self-employment, rental income, or any other applicable revenues. The household income is a crucial determinant in establishing eligibility for subsidies or assistance programs that could significantly impact the affordability and accessibility of the insurance plans available to you. It ensures that the presented insurance options are within your financial reach and align with your budgetary considerations.
+During Step 3, you will find more information about the different fundamental terminologies and navigating through different plan categories to make an informed choice. Before embarking on the selection of a healthcare plan, it's imperative to familiarize yourself with essential insurance terminologies. Key terms like premiums, deductibles, copayments, and coinsurance can initially seem complex, but having a grasp of these terms is vital for making a well-informed choice. Health insurance plans are categorized into Bronze, Silver, Gold, and Platinum levels, each offering varying levels of coverage and cost-sharing. The categorization is based on the proportion of costs the insurance plan covers. A Bronze plan typically covers less but has lower premiums, making it a good fit for those who anticipate fewer medical expenses. On the other hand, a Platinum plan covers more but comes with higher premiums, suitable for individuals requiring frequent medical care or with specific health conditions.
+
+```{r}
+# Load necessary libraries
+library(readxl)
+library(knitr)
+
+# Read the Excel file
+library(readr)
+insurance1 <- read_csv("~/Desktop/UHD FILES/STAT 6382/insurance1.csv")
+
+# Display the table
+kable(insurance1)
+head(insurance1, n=10)
+```
+
+**The following line will provide more information about the dataset:**
+
+```{r}
+# Check the data types of each column
+data_types <- sapply(insurance1, class)
+data_types
+```
+
+In our case to be able to determine the cost of the medical insurance we will focus primarily on 3 main factors (the sex,the smoking status and the region)
+
+```{r}
+getwd()
+knitr::include_graphics("/Users/mohamedtounkara/Desktop/UHD FILES/STAT 6382/Project 1/Screenshot 2023.png")
+
+```
+***On graph 1, we can clearly see see that the premium for male is slightly higher compared to woman. Based on my research this is can be related to the fact that males have a higher risk of accidents, illness or mortality compare to female. They also work in occupations that are considered riskier, such as jobs in construction, mining, or other hazardous environments. 
+
+***On the graph2, the smoking status highly impact the insurance cost of the person who wanted to get coverage. Smoking is associated with a wide range of health issues, including heart disease, respiratory diseases, cancer, stroke etc. Smoking often leads to long-term health consequences, resulting in ongoing medical care and treatment. 
+
+***Finally on graph 3, people living in the southeast and northeast will pay more on insurance compare to those in the southwest and northwest. This can be explain by the fact that urban areas in the northeast and certain parts of the southeast have a higher cost of living due to factors like housing, transportation, and general expenses.
+
+```{r}
+getwd()
+knitr::include_graphics("/Users/mohamedtounkara/Desktop/UHD FILES/STAT 6382/Project 1/Screenshot 202309 2.png")
+```
+Based on this graph we can clearly identify the impact of smoking on the medical insurance of an individual. The Body Mass Index (BMI) also plays a role even though very minor.
+
+
+
+
+
+
+# Conclusion
+In this project, I embarked on an exploration of the factors influencing medical insurance costs in the context of the USA. The aim was to better understand the intricacies of medical insurance premium determinants, regional variations, and the statistical approaches involved.I began by investigating the fundamental components that contribute to insurance premiums, including demographic factors (age, gender), lifestyle choices (smoking), geographic location, and the prevalence of health conditions. My analysis revealed that these variables significantly impact the pricing of medical insurance.
+
+Furthermore, I delved into regional variations across the southeast, northeast, southwest, and northwest regions of the USA. My research showcased that varying healthcare infrastructure, cost of living, population density, and healthcare utilization rates contribute to distinct premium levels in these regions.
+To gain a deeper understanding of the statistical aspects, I explored the application of statistical models in premium calculations. My exploration included the theoretical application of linear regression models, recognizing the importance of accurate modeling and statistical estimation in determining insurance premiums.
+While this project provides a foundational understanding of medical insurance cost determinants and statistical approaches, it's important to acknowledge that real-world insurance pricing involves a more comprehensive evaluation. Actuarial expertise, precise risk assessments, and adherence to regulatory requirements play vital roles in arriving at fair and accurate medical insurance premiums.
+
+In summary, this project illuminates the multifaceted nature of medical insurance cost determination. It underscores the necessity of considering various factors, both demographic and regional, in understanding insurance premium variations. Additionally, the project emphasizes the critical role of statistical methodologies in ensuring transparent, data-driven premium calculations, ultimately contributing to a more informed and equitable insurance system.
+
+# References
